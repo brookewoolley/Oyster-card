@@ -23,16 +23,6 @@ describe Oystercard do
     expect{subject.top_up(1)}.to raise_error "Unable to top-up, balance can not exceed #{Oystercard::MAXIMUM_BALANCE}"
   end
 
-  it 'deducts a fare' do
-    expect(subject).to respond_to(:deduct).with(1).argument
-  end
-
-  it 'deducts fare amount from balance' do
-    # card = Oystercard.new
-    # card.deduct(5)
-    expect{ subject.deduct 3}.to change{ subject.balance }.by -3
-  end
-
   it 'checks whether card holder is in journey' do
     expect(subject).not_to be_in_journey #RSpec predicate matcher test, adds ?
     # expect(subject.in_journey?).to be false
@@ -56,6 +46,10 @@ describe Oystercard do
     subject.touch_out
     expect(subject).not_to be_in_journey
     # expect{card.touch_out}.to change{ card.in_journey? }.to eq false
+  end
+
+  it 'deducts fare on touch_out' do
+    expect{subject.touch_out}.to change{ subject.balance }.by -Oystercard::FARE
   end
 
 end
