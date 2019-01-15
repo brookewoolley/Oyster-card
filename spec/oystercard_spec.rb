@@ -19,9 +19,26 @@ describe Oystercard do
   end
 
   it 'raises an error when topping up if balance will exceed £90' do
-    maximum_balance = Oystercard::MAXIMUM_BALANCE
-    subject.top_up(maximum_balance)
-    expect{subject.top_up(1)}.to raise_error 'Unable to top-up, balance can not exceed #{maximum_balance}'
+    subject.top_up(Oystercard::MAXIMUM_BALANCE)
+    expect{subject.top_up(1)}.to raise_error "Unable to top-up, balance can not exceed #{Oystercard::MAXIMUM_BALANCE}"
+  end
+
+  it 'deducts a fare' do
+    expect(subject).to respond_to(:deduct).with(1).argument
+  end
+
+  it 'deducts fare amount from balance' do
+    # card = Oystercard.new
+    # card.deduct(5)
+    expect{ subject.deduct 3}.to change{ subject.balance }.by -3
+  end
+
+  it 'checks whether card holder is in journey' do
+    expect(subject.in_journey?).to be false
+  end
+
+  it 'touch in to start journey' do
+    expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
   end
 
 end
