@@ -34,11 +34,21 @@ describe Oystercard do
   end
 
   it 'checks whether card holder is in journey' do
-    expect(subject.in_journey?).to be false
+    expect(subject).not_to be_in_journey #RSpec predicate matcher test, adds ?
+    # expect(subject.in_journey?).to be false
   end
 
   it 'touch in to start journey' do
-    expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
+    subject.touch_in
+    expect(subject).to be_in_journey
+    # expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
+  end
+
+  it 'touch out to end journey' do
+    subject.touch_in
+    subject.touch_out
+    expect(subject).not_to be_in_journey
+    # expect{card.touch_out}.to change{ card.in_journey? }.to eq false
   end
 
 end
