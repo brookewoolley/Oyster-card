@@ -1,7 +1,7 @@
 require 'oystercard'
 
 describe Oystercard do
-  let(:aldgate) {double('entry_station')}
+  let(:station) {double('entry_station')}
 
   it 'returns the current balance' do
     expect(subject.balance).to eq (0)
@@ -31,19 +31,19 @@ describe Oystercard do
 
   it 'touch in to start journey' do
     subject.top_up(5)
-    subject.touch_in(aldgate)
+    subject.touch_in(station)
     expect(subject).to be_in_journey
     # expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
   end
 
   it 'raises an error at touch in when minimum balance not available' do
     # subject.balance(0)
-    expect{subject.touch_in(aldgate)}.to raise_error "Please top up: minimum balance not available for journey"
+    expect{subject.touch_in(station)}.to raise_error "Please top up: minimum balance not available for journey"
   end
 
   it 'touch out to end journey' do
     subject.top_up(5)
-    subject.touch_in(aldgate)
+    subject.touch_in(station)
     subject.touch_out
     expect(subject).not_to be_in_journey
     # expect{card.touch_out}.to change{ card.in_journey? }.to eq false
@@ -55,12 +55,12 @@ describe Oystercard do
 
   it 'records the entry station at touch_in' do
     subject.top_up(5)
-    expect{subject.touch_in(aldgate)}.to change{ subject.entry_station }.to aldgate
+    expect{subject.touch_in(station)}.to change{ subject.entry_station }.to station
   end
 
   it 'forgets entry station on touch out' do
     subject.top_up(5)
-    subject.touch_in(aldgate)
+    subject.touch_in(station)
     expect{subject.touch_out}.to change{subject.entry_station}.to nil
   end
 
