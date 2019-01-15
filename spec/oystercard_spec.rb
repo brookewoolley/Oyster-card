@@ -44,24 +44,34 @@ describe Oystercard do
   it 'touch out to end journey' do
     subject.top_up(5)
     subject.touch_in(station)
-    subject.touch_out
+    subject.touch_out(station)
     expect(subject).not_to be_in_journey
     # expect{card.touch_out}.to change{ card.in_journey? }.to eq false
   end
 
   it 'deducts fare on touch_out' do
-    expect{subject.touch_out}.to change{ subject.balance }.by -Oystercard::FARE
+    expect{subject.touch_out(station)}.to change{ subject.balance }.by -Oystercard::FARE
   end
 
   it 'records the entry station at touch_in' do
     subject.top_up(5)
-    expect{subject.touch_in(station)}.to change{ subject.entry_station }.to station
+    expect{subject.touch_in(station)}.to change{ subject.list_journeys[:entry] }.to eq station
   end
 
   it 'forgets entry station on touch out' do
     subject.top_up(5)
     subject.touch_in(station)
-    expect{subject.touch_out}.to change{subject.entry_station}.to nil
+    expect{subject.touch_out(station)}.to change{subject.entry_station}.to nil
+  end
+
+  it 'records the exit station at touch out' do
+    subject.top_up(5)
+    subject.touch_in(station)
+    expect{subject.touch_out(station)}.to change{ subject.list_journeys[:exit]}.to eq station
+  end
+
+  it 'gives a list of journeys' do
+    expect(subject.list_journeys).to eq ({})
   end
 
 end
