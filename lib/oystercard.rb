@@ -23,6 +23,7 @@ class Oystercard
   end
 
   def touch_in
+    fail "Please top up: minimum balance not available for journey" if @balance < 1
     @in_journey = true
   end
 

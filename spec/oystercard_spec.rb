@@ -39,12 +39,19 @@ describe Oystercard do
   end
 
   it 'touch in to start journey' do
+    subject.top_up(5)
     subject.touch_in
     expect(subject).to be_in_journey
     # expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
   end
 
+  it 'raises an error at touch in when minimum balance not available' do
+    # subject.balance(0)
+    expect{subject.touch_in}.to raise_error "Please top up: minimum balance not available for journey"
+  end
+
   it 'touch out to end journey' do
+    subject.top_up(5)
     subject.touch_in
     subject.touch_out
     expect(subject).not_to be_in_journey
