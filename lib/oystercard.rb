@@ -4,11 +4,13 @@ class Oystercard
   MAXIMUM_BALANCE = 90
   FARE = 1
 
-  attr_reader :balance, :entry_station, :list_journeys
+  attr_reader :balance, :entry_station, :journey, :list_journeys
 
   def initialize
     @balance = 0
     @list_journeys = {}
+    @journey = {}
+    @entry_station
   end
 
   def top_up(amount)
@@ -22,13 +24,14 @@ class Oystercard
 
   def touch_in(entry_station)
     fail "Please top up: minimum balance not available for journey" if @balance < MINIMUM_BALANCE
-    @list_journeys[:entry] = entry_station #this pushes the key (entry) and value (entry_station) to hash
+    @journey[:entry] = entry_station #this pushes the key (entry) and value (entry_station) to hash
     @entry_station = entry_station
   end
 
   def touch_out(exit_station)
     deduct(FARE)
-    @list_journeys[:exit] = exit_station
+    @journey[:exit] = exit_station
+    @list_journeys[Time.now] = @journey
     @entry_station = nil
   end
 
