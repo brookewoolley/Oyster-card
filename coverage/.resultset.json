@@ -1,6 +1,36 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/brookewoolley/Projects/Oyster/spec/journey_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        3,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/brookewoolley/Projects/Oyster/lib/journey.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        null,
+        null,
+        null
+      ],
       "/Users/brookewoolley/Projects/Oyster/spec/oystercard_spec.rb": [
         1,
         null,
@@ -107,6 +137,17 @@
         null,
         null,
         null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/brookewoolley/Projects/Oyster/lib/oystercard.rb": [
@@ -119,15 +160,15 @@
         1,
         null,
         1,
-        13,
-        13,
-        13,
-        13,
+        14,
+        14,
+        14,
+        14,
         null,
         null,
         1,
+        11,
         10,
-        9,
         null,
         null,
         1,
@@ -141,16 +182,16 @@
         null,
         null,
         1,
-        5,
-        5,
-        5,
-        5,
+        6,
+        6,
+        6,
+        6,
         null,
         null,
         1,
         null,
         1,
-        5,
+        6,
         null,
         null,
         null,
@@ -192,6 +233,6 @@
         null
       ]
     },
-    "timestamp": 1547652323
+    "timestamp": 1547660048
   }
 }

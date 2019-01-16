@@ -103,4 +103,15 @@ describe Oystercard do
 
   end
 
+  describe '#fare' do
+
+    it 'charges penalty fare if there was either no entry station or exit station' do
+      subject.top_up(6)
+      subject.touch_out(@exit_station)
+      expect(subject.balance).to eq (0)
+
+    end
+
+  end
+
 end
