@@ -91,7 +91,14 @@ describe Oystercard do
       expect{subject.touch_in(station)}.to change{ subject.entry_station }.to eql station
       # subject.touch_out(exit_station)
       # expect(subject.list_journeys).to eq ({entry: station, exit: exit_station})
+    end
 
+    it 'stores a journey, example Aldgate to Mile End' do
+      subject.top_up(5)
+      subject.touch_in("Aldgate")
+      allow(Time).to receive(:now).and_return("2019-01-16 14:42:23 +0000")
+      subject.touch_out("Mile End")
+      expect(subject.list_journeys["2019-01-16 14:42:23 +0000"]).to eql({entry: "Aldgate", exit: "Mile End"})
     end
 
   end

@@ -29,10 +29,10 @@ class Oystercard
   end
 
   def touch_out(exit_station)
+    @entry_station = nil
     deduct(FARE)
     @journey[:exit] = exit_station
     @list_journeys[Time.now] = @journey
-    @entry_station = nil
   end
 
 private
