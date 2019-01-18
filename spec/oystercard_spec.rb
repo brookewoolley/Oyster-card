@@ -47,7 +47,9 @@ describe Oystercard do
 
     it 'records the entry station at touch_in' do
       subject.top_up(5)
-      expect{subject.touch_in(station)}.to change{ subject.journey[:entry] }.to eq station
+      subject.touch_in(station)
+      mystery = subject.list_journeys[-1]
+      expect(mystery.entry_station).to eq(station)
     end
 
   end

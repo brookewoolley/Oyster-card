@@ -2,6 +2,7 @@ require 'journey'
 
 describe Journey do
   # let(:card) {double('card')}
+  let(:station) {double('station')}
 
   subject {described_class.new("Peckham Rye", "Shoreditch")}
 
@@ -11,6 +12,10 @@ describe Journey do
 
   it 'knows the exit station' do
     expect(subject.exit_station).to eq("Shoreditch")
+  end
+
+  it 'can accept an exit station' do
+    expect(subject.exit_station=station).to eq(subject.exit_station)
   end
 
   describe '#in_journey' do
@@ -30,4 +35,5 @@ describe Journey do
       expect(journey).to_not be_in_journey
     end
   end
+
 end
