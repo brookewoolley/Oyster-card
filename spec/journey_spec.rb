@@ -37,17 +37,17 @@ describe Journey do
 
   describe '#fare' do
     it 'checks fare method charges minimum' do
-      expect(subject.fare).to eq(1)
+      expect(subject.fare).to eq(Journey::MIN_FARE)
     end
 
     it 'charges a penalty fare when missing an entry station' do
       journey = Journey.new(nil, "Shoreditch")
-      expect(journey.fare).to eq(6)
+      expect(journey.fare).to eq(Journey::PENALTY_FARE)
     end
 
     it 'charges a penalty fare when missing an exit station' do
       journey = Journey.new("Shoreditch", nil)
-      expect(journey.fare).to eq(6)
+      expect(journey.fare).to eq(Journey::PENALTY_FARE)
     end
 
   end

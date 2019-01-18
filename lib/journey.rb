@@ -26,6 +26,8 @@ class Journey
     MIN_FARE
   end
 
+  private
+
   def penalty?
     return true if entry_station == nil
     return true if exit_station == nil
