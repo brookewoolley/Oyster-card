@@ -22,7 +22,6 @@ describe Journey do
 
     it 'checks for a complete journey' do
       expect(subject).not_to be_in_journey #RSpec predicate matcher test, adds ?
-      # expect(subject.in_journey?).to be false
     end
 
     it 'checks for no exit station' do
@@ -34,6 +33,23 @@ describe Journey do
       journey = Journey.new(nil, "Shoreditch")
       expect(journey).to_not be_in_journey
     end
+  end
+
+  describe '#fare' do
+    it 'checks fare method charges minimum' do
+      expect(subject.fare).to eq(1)
+    end
+
+    it 'charges a penalty fare when missing an entry station' do
+      journey = Journey.new(nil, "Shoreditch")
+      expect(journey.fare).to eq(6)
+    end
+
+    it 'charges a penalty fare when missing an exit station' do
+      journey = Journey.new("Shoreditch", nil)
+      expect(journey.fare).to eq(6)
+    end
+
   end
 
 end

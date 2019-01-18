@@ -18,10 +18,6 @@ class Oystercard
     @balance += amount
   end
 
-  # def in_journey?
-  #   @entry_station != nil
-  # end
-
   def touch_in(entry_station)
     fail "Please top up: minimum balance not available for journey" if @balance < MINIMUM_BALANCE
     journey = Journey.new(entry_station, nil)
@@ -39,7 +35,5 @@ private
   def deduct(amount)
     @balance -= amount
   end
-
-
 
 end
