@@ -1,6 +1,7 @@
 require 'journey'
 
 describe Journey do
+  # let(:card) {double('card')}
 
   subject {described_class.new("Peckham Rye", "Shoreditch")}
 
@@ -12,4 +13,21 @@ describe Journey do
     expect(subject.exit_station).to eq("Shoreditch")
   end
 
+  describe '#in_journey' do
+
+    it 'checks for a complete journey' do
+      expect(subject).not_to be_in_journey #RSpec predicate matcher test, adds ?
+      # expect(subject.in_journey?).to be false
+    end
+
+    it 'checks for no exit station' do
+      journey = Journey.new("Peckham Rye", nil)
+      expect(journey).to be_in_journey
+    end
+
+    it 'checks for no entry station' do
+      journey = Journey.new(nil, "Shoreditch")
+      expect(journey).to_not be_in_journey
+    end
+  end
 end

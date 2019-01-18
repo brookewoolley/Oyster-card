@@ -8,4 +8,8 @@ class Journey
     @journey = {entry: entry_station, exit: exit_station}
   end
 
+  def in_journey?
+    @exit_station == nil
+  end
+
 end

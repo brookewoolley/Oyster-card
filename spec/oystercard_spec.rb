@@ -22,21 +22,21 @@ describe Oystercard do
 
   end
 
-  describe '#in_journey' do
-
-    it 'checks whether card holder is in journey' do
-      expect(subject).not_to be_in_journey #RSpec predicate matcher test, adds ?
-      # expect(subject.in_journey?).to be false
-    end
-
-    it 'touch in to start journey' do
-      subject.top_up(5)
-      subject.touch_in(station)
-      expect(subject).to be_in_journey
-      # expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
-    end
-
-  end
+  # describe '#in_journey' do
+  #
+  #   it 'checks whether card holder is in journey' do
+  #     expect(subject).not_to be_in_journey #RSpec predicate matcher test, adds ?
+  #     # expect(subject.in_journey?).to be false
+  #   end
+  #
+  #   it 'touch in to start journey' do
+  #     subject.top_up(5)
+  #     subject.touch_in(station)
+  #     expect(subject).to be_in_journey
+  #     # expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
+  #   end
+  #
+  # end
 
   describe '#touch_in' do
 
@@ -105,13 +105,11 @@ describe Oystercard do
 
   describe '#fare' do
 
-    it 'charges penalty fare if there was either no entry station or exit station' do
-      subject.top_up(6)
-      subject.touch_out(@exit_station)
-      expect(subject.balance).to eq (0)
+    # it 'charges penalty fare if there was either no entry station or exit station' do
+    #   subject.top_up(6)
+    #   subject.touch_out(@exit_station)
+    #   expect(subject.balance).to eq (0)
 
     end
 
   end
-
-end
