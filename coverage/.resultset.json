@@ -2,39 +2,6 @@
   "RSpec": {
     "coverage": {
       "/Users/brookewoolley/Projects/Oyster/spec/journey_spec.rb": [
-<<<<<<< HEAD
-=======
-        1,
-        null,
-        1,
-        null,
-        3,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/brookewoolley/Projects/Oyster/lib/journey.rb": [
-        1,
-        null,
-        1,
-        null,
-        1,
-        2,
-        2,
-        2,
-        null,
-        null,
-        null
-      ],
-      "/Users/brookewoolley/Projects/Oyster/spec/oystercard_spec.rb": [
->>>>>>> cb341c746412cb9e551158c3a09e98d5fc485fc3
         1,
         null,
         1,
@@ -98,7 +65,7 @@
         null,
         1,
         6,
-        1,
+        2,
         null,
         1,
         null,
@@ -160,6 +127,8 @@
         null,
         null,
         null,
+        1,
+        1,
         1,
         4,
         null,
@@ -168,7 +137,7 @@
         1,
         1,
         1,
-        2,
+        4,
         null,
         null,
         null,
@@ -186,27 +155,11 @@
         null,
         null,
         null,
-        1,
-        1,
-        1,
-        1,
-        1,
+        null,
         1,
         null,
         null,
         null,
-        null,
-        1,
-        null,
-<<<<<<< HEAD
-        null,
-        null,
-=======
-        1,
-        1,
-        1,
-        1,
->>>>>>> cb341c746412cb9e551158c3a09e98d5fc485fc3
         null,
         null,
         null,
@@ -224,22 +177,10 @@
         1,
         null,
         1,
-<<<<<<< HEAD
         null,
         1,
-        9,
-        9,
-=======
-        14,
-        14,
-        14,
-        14,
-        null,
-        null,
-        1,
-        11,
-        10,
->>>>>>> cb341c746412cb9e551158c3a09e98d5fc485fc3
+        8,
+        8,
         null,
         null,
         1,
@@ -252,7 +193,6 @@
         null,
         null,
         1,
-<<<<<<< HEAD
         5,
         4,
         4,
@@ -262,23 +202,13 @@
         2,
         2,
         2,
-=======
-        6,
-        6,
-        6,
-        6,
->>>>>>> cb341c746412cb9e551158c3a09e98d5fc485fc3
         null,
         null,
         1,
         null,
         1,
-<<<<<<< HEAD
         2,
         null,
-=======
-        6,
->>>>>>> cb341c746412cb9e551158c3a09e98d5fc485fc3
         null,
         null,
         null,
@@ -320,10 +250,6 @@
         null
       ]
     },
-<<<<<<< HEAD
-    "timestamp": 1547823592
-=======
-    "timestamp": 1547660048
->>>>>>> cb341c746412cb9e551158c3a09e98d5fc485fc3
+    "timestamp": 1547830251
   }
 }

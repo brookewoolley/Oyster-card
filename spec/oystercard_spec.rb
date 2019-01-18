@@ -65,6 +65,8 @@ describe Oystercard do
     # end
 
     it 'deducts fare on touch_out' do
+      subject.top_up(5)
+      subject.touch_in(station)
       expect{subject.touch_out(station)}.to change{ subject.balance }.by -Oystercard::FARE
     end
 
@@ -72,7 +74,7 @@ describe Oystercard do
     it 'records the exit station at touch out' do
       subject.top_up(5)
       subject.touch_in(station)
-      expect{subject.touch_out(station)}.to change{ subject.journey[:exit]}.to eq station
+      expect{subject.touch_out(exit_station)}.to change{ subject.list_journeys.last.exit_station}.to eq exit_station
     end
 
   end
@@ -86,16 +88,7 @@ describe Oystercard do
     it 'touching in starts a journey' do
       subject.top_up(5)
       subject.touch_in(station)
-      expect(subject.journey).to_not be_empty
-      # expect{subject.touch_out(station)}.to change{ subject.entry_station }.to eql station
-    end
-
-    it 'stores a journey, example Aldgate to Mile End' do
-      subject.top_up(5)
-      subject.touch_in("Aldgate")
-      allow(Time).to receive(:now).and_return("2019-01-16 14:42:23 +0000")
-      subject.touch_out("Mile End")
-      expect(subject.list_journeys["2019-01-16 14:42:23 +0000"]).to eql({entry: "Aldgate", exit: "Mile End"})
+      expect(subject.list_journeys).to_not be_empty
     end
 
   end
