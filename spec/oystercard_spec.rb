@@ -22,21 +22,21 @@ describe Oystercard do
 
   end
 
-  describe '#in_journey' do
-
-    it 'checks whether card holder is in journey' do
-      expect(subject).not_to be_in_journey #RSpec predicate matcher test, adds ?
-      # expect(subject.in_journey?).to be false
-    end
-
-    it 'touch in to start journey' do
-      subject.top_up(5)
-      subject.touch_in(station)
-      expect(subject).to be_in_journey
-      # expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
-    end
-
-  end
+  # describe '#in_journey' do
+  #
+  #   it 'checks whether card holder is in journey' do
+  #     expect(subject).not_to be_in_journey #RSpec predicate matcher test, adds ?
+  #     # expect(subject.in_journey?).to be false
+  #   end
+  #
+  #   it 'touch in to start journey' do
+  #     subject.top_up(5)
+  #     subject.touch_in(station)
+  #     expect(subject).to be_in_journey
+  #     # expect{subject.touch_in}.to change{ subject.in_journey? }.to eq true
+  #   end
+  #
+  # end
 
   describe '#touch_in' do
 
@@ -47,30 +47,27 @@ describe Oystercard do
 
     it 'records the entry station at touch_in' do
       subject.top_up(5)
-      expect{subject.touch_in(station)}.to change{ subject.journey[:entry] }.to eq station
+      subject.touch_in(station)
+      mystery = subject.list_journeys[-1]
+      expect(mystery.entry_station).to eq(station)
     end
 
   end
 
   describe '#touch_out' do
 
-    it 'touch out to end journey' do
-      subject.top_up(5)
-      subject.touch_in(station)
-      subject.touch_out(station)
-      expect(subject).not_to be_in_journey
-      # expect{card.touch_out}.to change{ card.in_journey? }.to eq false
-    end
+    # xit 'touch out to end journey' do
+    #   subject.top_up(5)
+    #   subject.touch_in(station)
+    #   subject.touch_out(station)
+    #   expect(subject.journey). to eq () to be complete / exit station == true
+    #   # expect{card.touch_out}.to change{ card.in_journey? }.to eq false
+    # end
 
     it 'deducts fare on touch_out' do
       expect{subject.touch_out(station)}.to change{ subject.balance }.by -Oystercard::FARE
     end
 
-    it 'forgets entry station on touch out' do
-      subject.top_up(5)
-      subject.touch_in(station)
-      expect{subject.touch_out(station)}.to change{subject.entry_station}.to nil
-    end
 
     it 'records the exit station at touch out' do
       subject.top_up(5)
@@ -86,11 +83,11 @@ describe Oystercard do
       expect(subject.list_journeys).to be_empty
     end
 
-    it 'touching in and out creates one journey' do
+    it 'touching in starts a journey' do
       subject.top_up(5)
-      expect{subject.touch_in(station)}.to change{ subject.entry_station }.to eql station
-      # subject.touch_out(exit_station)
-      # expect(subject.list_journeys).to eq ({entry: station, exit: exit_station})
+      subject.touch_in(station)
+      expect(subject.journey).to_not be_empty
+      # expect{subject.touch_out(station)}.to change{ subject.entry_station }.to eql station
     end
 
     it 'stores a journey, example Aldgate to Mile End' do
@@ -105,13 +102,11 @@ describe Oystercard do
 
   describe '#fare' do
 
-    it 'charges penalty fare if there was either no entry station or exit station' do
-      subject.top_up(6)
-      subject.touch_out(@exit_station)
-      expect(subject.balance).to eq (0)
+    # it 'charges penalty fare if there was either no entry station or exit station' do
+    #   subject.top_up(6)
+    #   subject.touch_out(@exit_station)
+    #   expect(subject.balance).to eq (0)
 
     end
 
   end
-
-end
