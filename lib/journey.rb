@@ -17,11 +17,13 @@ class Journey
   end
 
   def fare
-    if penalty?
-      PENALTY_FARE
-    else
-      MIN_FARE
-    end
+    # if penalty?     kept for understanding.
+    #   PENALTY_FARE
+    # else
+    #   MIN_FARE
+    # end
+    return PENALTY_FARE if penalty?
+    MIN_FARE
   end
 
   def penalty?
