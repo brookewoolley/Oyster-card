@@ -54,23 +54,18 @@ describe Oystercard do
 
   describe '#touch_out' do
 
-    it 'touch out to end journey' do
-      subject.top_up(5)
-      subject.touch_in(station)
-      subject.touch_out(station)
-      expect(subject).not_to be_in_journey
-      # expect{card.touch_out}.to change{ card.in_journey? }.to eq false
-    end
+    # xit 'touch out to end journey' do
+    #   subject.top_up(5)
+    #   subject.touch_in(station)
+    #   subject.touch_out(station)
+    #   expect(subject.journey). to eq () to be complete / exit station == true
+    #   # expect{card.touch_out}.to change{ card.in_journey? }.to eq false
+    # end
 
     it 'deducts fare on touch_out' do
       expect{subject.touch_out(station)}.to change{ subject.balance }.by -Oystercard::FARE
     end
 
-    it 'forgets entry station on touch out' do
-      subject.top_up(5)
-      subject.touch_in(station)
-      expect{subject.touch_out(station)}.to change{subject.entry_station}.to nil
-    end
 
     it 'records the exit station at touch out' do
       subject.top_up(5)
@@ -86,11 +81,11 @@ describe Oystercard do
       expect(subject.list_journeys).to be_empty
     end
 
-    it 'touching in and out creates one journey' do
+    it 'touching in starts a journey' do
       subject.top_up(5)
-      expect{subject.touch_in(station)}.to change{ subject.entry_station }.to eql station
-      # subject.touch_out(exit_station)
-      # expect(subject.list_journeys).to eq ({entry: station, exit: exit_station})
+      subject.touch_in(station)
+      expect(subject.journey).to_not be_empty
+      # expect{subject.touch_out(station)}.to change{ subject.entry_station }.to eql station
     end
 
     it 'stores a journey, example Aldgate to Mile End' do
