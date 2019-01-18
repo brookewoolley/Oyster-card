@@ -27,11 +27,13 @@ class Journey
   end
 
   def penalty?
-    if entry_station == nil || exit_station == nil
-      true
-    else
-      false
-    end
+    return true if entry_station == nil
+    return true if exit_station == nil
+    # if entry_station == nil || exit_station == nil
+    #   true
+    # else
+    #   false
+    # end
   end
 
 end
